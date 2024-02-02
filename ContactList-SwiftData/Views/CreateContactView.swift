@@ -94,6 +94,6 @@ private extension CreateContactView {
 #Preview {
     NavigationStack {
         let preview = Previewer([Contact.self])
-        CreateContactView()
+        return CreateContactView().modelContainer(preview.container)
     }
 }
