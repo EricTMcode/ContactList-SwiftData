@@ -5,6 +5,7 @@
 //  Created by Eric on 02/02/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
@@ -13,5 +14,6 @@ struct ContactList_SwiftDataApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: Contact.self)
     }
 }
