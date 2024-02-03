@@ -13,6 +13,7 @@ struct ContentView: View {
     @Query var contacts: [Contact]
     
     @State private var showCreateContact = false
+    @State private var sortOrder = [SortDescriptor(\Contact.lastName)]
     @State private var contactEdit: Contact?
     @State private var searchText = ""
     
@@ -22,55 +23,25 @@ struct ContentView: View {
                 if contacts.isEmpty {
                     ContentUnavailableView("No contacts", systemImage: "person.circle", description: Text("Please add a contact with the + button."))
                 } else {
-                    List {
-                        ForEach(contacts) { contact in
-                            NavigationLink(value: contact) {
-                                HStack {
-                                    if let imageData = contact.photo,
-                                       let uiImage = UIImage(data: imageData) {
-                                        Image(uiImage: uiImage)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 60, height: 60)
-                                            .clipShape(Circle())
-                                    } else {
-                                        Image(systemName: "person.crop.circle")
-                                            .font(.system(size: 55))
-                                            .foregroundStyle(.blue)
-                                    }
-                                    
-                                    Text(contact.lastName + " " + contact.firstName)
-                                        .font(.body)
-                                        .fontWeight(.medium)
-                                }
-                            }
-                            .swipeActions {
-                                Button(role: .destructive) {
-                                    withAnimation {
-                                        modelContext.delete(contact)
-                                    }
-                                } label: {
-                                    Label("Delete", systemImage: "trash.fill")
-                                }
-                                
-                                Button {
-                                    contactEdit = contact
-                                } label: {
-                                    Label("Edit", systemImage: "pencil")
-                                }
-                                .tint(.orange)
-                            }
-                        }
-                    }
-                    .listStyle(.plain)
+                    ContactView(searchString: searchText, sortOrder: sortOrder)
                 }
             }
             .navigationTitle("Contact List")
             .searchable(text: $searchText)
             .navigationDestination(for: Contact.self) { contact in
-                ContactView(contact: contact)
+                ContactDetailView(contact: contact)
             }
             .toolbar {
+                Menu("Sort", systemImage: "ellipsis") {
+                    Picker("Sort", selection: $sortOrder) {
+                        Text("Name (A-Z)")
+                            .tag([SortDescriptor(\Contact.lastName)])
+                        Text("Name (Z-A)")
+                            .tag([SortDescriptor(\Contact.lastName, order: .reverse)])
+                    }
+                }
+                .symbolVariant(.circle)
+                
                 Button {
                     showCreateContact.toggle()
                 } label: {
@@ -80,13 +51,6 @@ struct ContentView: View {
             .sheet(isPresented: $showCreateContact) {
                 NavigationStack {
                     CreateContactView()
-                }
-            }
-            .fullScreenCover(item: $contactEdit, onDismiss: { contactEdit = nil
-            }) { contact in
-                NavigationStack {
-                    EditContactView(contact: contact)
-                        .interactiveDismissDisabled()
                 }
             }
         }
