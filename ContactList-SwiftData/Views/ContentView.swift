@@ -13,6 +13,8 @@ struct ContentView: View {
     @Query var contacts: [Contact]
     
     @State private var showCreateContact = false
+    @State private var contactEdit: Contact?
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
@@ -32,7 +34,7 @@ struct ContentView: View {
                                             .frame(width: 60, height: 60)
                                             .clipShape(Circle())
                                     } else {
-                                            Image(systemName: "person.crop.circle")
+                                        Image(systemName: "person.crop.circle")
                                             .font(.system(size: 55))
                                             .foregroundStyle(.blue)
                                     }
@@ -52,7 +54,7 @@ struct ContentView: View {
                                 }
                                 
                                 Button {
-                                    
+                                    contactEdit = contact
                                 } label: {
                                     Label("Edit", systemImage: "pencil")
                                 }
@@ -60,9 +62,14 @@ struct ContentView: View {
                             }
                         }
                     }
+                    .listStyle(.plain)
                 }
             }
             .navigationTitle("Contact List")
+            .searchable(text: $searchText)
+            .navigationDestination(for: Contact.self) { contact in
+                ContactView(contact: contact)
+            }
             .toolbar {
                 Button {
                     showCreateContact.toggle()
@@ -73,6 +80,13 @@ struct ContentView: View {
             .sheet(isPresented: $showCreateContact) {
                 NavigationStack {
                     CreateContactView()
+                }
+            }
+            .fullScreenCover(item: $contactEdit, onDismiss: { contactEdit = nil
+            }) { contact in
+                NavigationStack {
+                    EditContactView(contact: contact)
+                        .interactiveDismissDisabled()
                 }
             }
         }

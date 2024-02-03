@@ -31,5 +31,10 @@ class Contact {
         self.emailAddress = emailAddress
         self.details = details
     }
-    
+}
+
+extension Contact {
+    static var example: Contact {
+        .init(firstName: "Eric", lastName: "Doe", company: "Apple", emailAddress: "eric.do@gmail.com", details: "Meet at apple park")
+    }
 }
