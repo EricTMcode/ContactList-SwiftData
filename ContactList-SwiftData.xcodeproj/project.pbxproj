@@ -17,6 +17,8 @@
 		071F71BA2B6E092A006D1027 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F71B92B6E092A006D1027 /* ContactDetailView.swift */; };
 		071F71BC2B6E0CAF006D1027 /* EditContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F71BB2B6E0CAF006D1027 /* EditContactView.swift */; };
 		071F71BE2B6E165E006D1027 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F71BD2B6E165E006D1027 /* ContactView.swift */; };
+		074196F22B710B9A00F32EA8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074196F12B710B9A00F32EA8 /* Category.swift */; };
+		074196F42B710C3200F32EA8 /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074196F32B710C3200F32EA8 /* CreateCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		071F71B92B6E092A006D1027 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		071F71BB2B6E0CAF006D1027 /* EditContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContactView.swift; sourceTree = "<group>"; };
 		071F71BD2B6E165E006D1027 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		074196F12B710B9A00F32EA8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		074196F32B710C3200F32EA8 /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				071F71B92B6E092A006D1027 /* ContactDetailView.swift */,
 				071F71B52B6D2322006D1027 /* CreateContactView.swift */,
 				071F71BB2B6E0CAF006D1027 /* EditContactView.swift */,
+				074196F32B710C3200F32EA8 /* CreateCategoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				071F71B32B6D1F7A006D1027 /* Contact.swift */,
+				074196F12B710B9A00F32EA8 /* Category.swift */,
 				071F71B72B6D243C006D1027 /* Previewer.swift */,
 			);
 			path = Model;
@@ -173,9 +179,11 @@
 			files = (
 				071F71B42B6D1F7A006D1027 /* Contact.swift in Sources */,
 				071F71BA2B6E092A006D1027 /* ContactDetailView.swift in Sources */,
+				074196F42B710C3200F32EA8 /* CreateCategoryView.swift in Sources */,
 				071F71B62B6D2322006D1027 /* CreateContactView.swift in Sources */,
 				071F71BE2B6E165E006D1027 /* ContactView.swift in Sources */,
 				071F71A62B6D1EEF006D1027 /* ContentView.swift in Sources */,
+				074196F22B710B9A00F32EA8 /* Category.swift in Sources */,
 				071F71BC2B6E0CAF006D1027 /* EditContactView.swift in Sources */,
 				071F71A42B6D1EEF006D1027 /* ContactList_SwiftDataApp.swift in Sources */,
 				071F71B82B6D243C006D1027 /* Previewer.swift in Sources */,

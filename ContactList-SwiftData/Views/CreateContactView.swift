@@ -14,6 +14,9 @@ struct CreateContactView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var contact = Contact()
+    @State private var showCreateCategory = false
+    @State private var selectedCategory: Category?
+    @Query private var categories: [Category]
     
     @State private var selectedItem: PhotosPickerItem?
     
@@ -56,12 +59,43 @@ struct CreateContactView: View {
                     .textInputAutocapitalization(.never)
             }
             
+            Section("Select a Category") {
+                if categories.isEmpty {
+                    ContentUnavailableView("No Categories", systemImage: "archivebox")
+                } else {
+                    Picker("Categories", selection: $selectedCategory) {
+                        ForEach(categories) { category in
+                            Text(category.title)
+                                .tag(category as Category?)
+                        }
+                        
+                        Text("None")
+                            .tag(nil as Category?)
+                    }
+                    .labelsHidden()
+                    .pickerStyle(.inline)
+                }
+                
+                Button {
+                    showCreateCategory.toggle()
+                } label: {
+                    Text("Add Category")
+                }
+            }
+            
             Section("Notes") {
                 TextField("Details about this contact", text: $contact.details, axis: .vertical)
             }
         }
         .navigationTitle("New Contact")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showCreateCategory) {
+            NavigationStack {
+                CreateCategoryView()
+            }
+            .presentationDetents([.height(400), .medium])
+            .presentationDragIndicator(.automatic)
+        }
         .task(id: selectedItem) {
             if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
                 contact.photo = data
@@ -88,6 +122,8 @@ struct CreateContactView: View {
 private extension CreateContactView {
     func save() {
         modelContext.insert(contact)
+        contact.category = selectedCategory
+        selectedCategory?.contacts?.append(contact)
     }
 }
 

@@ -38,6 +38,8 @@ struct ContentView: View {
                             .tag([SortDescriptor(\Contact.lastName)])
                         Text("Name (Z-A)")
                             .tag([SortDescriptor(\Contact.lastName, order: .reverse)])
+                        Text("Company")
+                            .tag([SortDescriptor(\Contact.company)])
                     }
                 }
                 .symbolVariant(.circle)

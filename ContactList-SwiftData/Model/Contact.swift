@@ -18,6 +18,8 @@ class Contact {
     
     @Attribute(.externalStorage) var photo: Data?
     
+    @Relationship(deleteRule: .nullify, inverse: \Category.contacts) var category: Category?
+    
     init(
         firstName: String = "",
         lastName: String = "",

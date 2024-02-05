@@ -14,6 +14,9 @@ struct EditContactView: View {
     @Environment(\.dismiss) var dismiss
     
     @Bindable var contact: Contact
+    @State private var showCreateCategory = false
+    @State private var selectedCategory: Category?
+    @Query private var categories: [Category]
     
     @State private var selectedItem: PhotosPickerItem?
     
@@ -56,12 +59,46 @@ struct EditContactView: View {
                     .textInputAutocapitalization(.never)
             }
             
+            Section("Select a Category") {
+                if categories.isEmpty {
+                    ContentUnavailableView("No Categories", systemImage: "archivebox")
+                } else {
+                    Picker("Categories", selection: $selectedCategory) {
+                        ForEach(categories) { category in
+                            Text(category.title)
+                                .tag(category as Category?)
+                        }
+                        
+                        Text("None")
+                            .tag(nil as Category?)
+                    }
+                    .labelsHidden()
+                    .pickerStyle(.inline)
+                }
+                
+                Button {
+                    showCreateCategory.toggle()
+                } label: {
+                    Text("Add Category")
+                }
+            }
+            
             Section("Notes") {
                 TextField("Details about this contact", text: $contact.details, axis: .vertical)
             }
         }
         .navigationTitle("Edit Contact")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            selectedCategory = contact.category
+        }
+        .sheet(isPresented: $showCreateCategory) {
+            NavigationStack {
+                CreateCategoryView()
+            }
+            .presentationDetents([.height(400), .medium])
+            .presentationDragIndicator(.automatic)
+        }
         .task(id: selectedItem) {
             if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
                 contact.photo = data
@@ -76,6 +113,7 @@ struct EditContactView: View {
             
             ToolbarItem(placement: .primaryAction) {
                 Button("OK") {
+                    contact.category = selectedCategory
                     dismiss()
                 }
                 .disabled(contact.firstName.isEmpty)

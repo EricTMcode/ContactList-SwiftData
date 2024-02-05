@@ -16,19 +16,19 @@ struct ContactDetailView: View {
         Form {
             HStack {
                 Spacer()
-                    if let imageData = contact.photo,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 130, height: 130)
-                            .clipShape(Circle())
-                            .clipped()
-                    } else {
-                        Image(systemName: "person.crop.circle")
-                            .font(.system(size: 120))
-                            .foregroundStyle(.blue)
-                    }
+                if let imageData = contact.photo,
+                   let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 130, height: 130)
+                        .clipShape(Circle())
+                        .clipped()
+                } else {
+                    Image(systemName: "person.crop.circle")
+                        .font(.system(size: 120))
+                        .foregroundStyle(.blue)
+                }
                 Spacer()
             }
             Section("Contact Info") {
@@ -39,6 +39,12 @@ struct ContactDetailView: View {
             
             Section("Comunication") {
                 Text(contact.emailAddress)
+            }
+            
+            if let category = contact.category {
+                Section("Category") {
+                    Text(category.title)
+                }
             }
             
             Section("Notes") {
