@@ -19,6 +19,7 @@
 		071F71BE2B6E165E006D1027 /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071F71BD2B6E165E006D1027 /* ContactView.swift */; };
 		074196F22B710B9A00F32EA8 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074196F12B710B9A00F32EA8 /* Category.swift */; };
 		074196F42B710C3200F32EA8 /* CreateCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074196F32B710C3200F32EA8 /* CreateCategoryView.swift */; };
+		074197352B72597D00F32EA8 /* ContactContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074197342B72597D00F32EA8 /* ContactContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		071F71BD2B6E165E006D1027 /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		074196F12B710B9A00F32EA8 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		074196F32B710C3200F32EA8 /* CreateCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryView.swift; sourceTree = "<group>"; };
+		074197342B72597D00F32EA8 /* ContactContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				071F71B32B6D1F7A006D1027 /* Contact.swift */,
 				074196F12B710B9A00F32EA8 /* Category.swift */,
 				071F71B72B6D243C006D1027 /* Previewer.swift */,
+				074197342B72597D00F32EA8 /* ContactContainer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				074197352B72597D00F32EA8 /* ContactContainer.swift in Sources */,
 				071F71B42B6D1F7A006D1027 /* Contact.swift in Sources */,
 				071F71BA2B6E092A006D1027 /* ContactDetailView.swift in Sources */,
 				074196F42B710C3200F32EA8 /* CreateCategoryView.swift in Sources */,

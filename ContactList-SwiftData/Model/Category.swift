@@ -24,9 +24,9 @@ class Category {
 extension Category {
     static var defaults: [Category] {
         [
-            .init(title: "Family"),
-            .init(title: "Friend"),
-            .init(title: "Work")
+            .init(title: "🏡 Family"),
+            .init(title: "👫 Friend"),
+            .init(title: "💼 Work")
         ]
     }
 }

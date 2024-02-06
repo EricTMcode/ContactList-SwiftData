@@ -38,17 +38,28 @@ struct ContactDetailView: View {
             }
             
             Section("Comunication") {
-                Text(contact.emailAddress)
+                if contact.emailAddress.isEmpty {
+                    Text("Email Address")
+                        .foregroundStyle(.secondary.opacity(0.3))
+                } else {
+                    Text(contact.emailAddress)
+                }
             }
             
             if let category = contact.category {
                 Section("Category") {
                     Text(category.title)
+                        
                 }
             }
             
             Section("Notes") {
-                Text(contact.details)
+                if contact.details.isEmpty {
+                    Text("Detail about this contact")
+                        .foregroundStyle(.secondary.opacity(0.3))
+                } else {
+                    Text(contact.details)
+                }
             }
             
         }

@@ -10,10 +10,13 @@ import SwiftUI
 
 @main
 struct ContactList_SwiftDataApp: App {
+    @AppStorage("isFirstTimeLaunch") private var isFirstTimeLaunch = true
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Contact.self)
+        .modelContainer(ContactContainer.create(shouldCreateDefaults: &isFirstTimeLaunch))
     }
 }
+
