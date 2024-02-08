@@ -21,7 +21,14 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 if contacts.isEmpty {
-                    ContentUnavailableView("No contacts", systemImage: "person.circle", description: Text("Please add a contact with the + button."))
+                    ContentUnavailableView(label: {
+                        Label("No Contacts", systemImage: "person.circle")
+                    }, description: {
+                        Text("Please add a contact.")
+                    }, actions: {
+                        Button("Add contact") { showCreateContact.toggle() }
+                    })
+                    .offset(y: -60)
                 } else {
                     ContactView(searchString: searchText, sortOrder: sortOrder)
                 }

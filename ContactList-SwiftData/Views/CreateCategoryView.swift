@@ -34,7 +34,7 @@ struct CreateCategoryView: View {
                 if categories.isEmpty {
                     
                 } else {
-                    ForEach(categories) { category in
+                    ForEach(categories.sorted(by: { $0.title < $1.title })) { category in
                         Text(category.title)
                             .swipeActions {
                                 Button(role: .destructive) {
