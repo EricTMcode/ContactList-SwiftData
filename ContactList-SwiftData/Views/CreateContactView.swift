@@ -64,7 +64,7 @@ struct CreateContactView: View {
                     ContentUnavailableView("No Categories", systemImage: "archivebox")
                 } else {
                     Picker("Categories", selection: $selectedCategory) {
-                        ForEach(categories) { category in
+                        ForEach(categories.sorted(by: { $0.title < $1.title })) { category in
                             Text(category.title)
                                 .tag(category as Category?)
                         }
@@ -72,14 +72,13 @@ struct CreateContactView: View {
                         Text("None")
                             .tag(nil as Category?)
                     }
-                    .labelsHidden()
-                    .pickerStyle(.inline)
                 }
                 
                 Button {
                     showCreateCategory.toggle()
                 } label: {
                     Text("Add Category")
+                        .font(.subheadline)
                 }
             }
             
