@@ -72,8 +72,8 @@ struct EditContactView: View {
                         Text("None")
                             .tag(nil as Category?)
                     }
-//                    .labelsHidden()
-//                    .pickerStyle(.inline)
+                    //                    .labelsHidden()
+                    //                    .pickerStyle(.inline)
                 }
                 
                 Button {
